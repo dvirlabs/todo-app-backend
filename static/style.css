@@ -1,0 +1,28 @@
+body{
+    background-color: gray;
+}
+
+#pageTitle{
+    text-align: center;
+}
+
+#pg_table{
+    margin: auto;
+    margin-top: 5%;
+    width: 30%;
+    height: auto;
+    border: 7px solid darkgoldenrod;
+    border-radius: 25px;
+    padding: 10px;
+}
+
+th{
+    font-size: 30px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+td{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border: 2px solid darkgoldenrod;
+    border-radius: 25px;
+}
