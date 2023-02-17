@@ -27,3 +27,7 @@ td{
     border-radius: 25px;
     text-align: center;
 }
+
+td:hover{
+    background-color:bisque;color:green;
+}
