@@ -3,12 +3,15 @@ from fastapi import FastAPI
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from db_utils import *
+import os
 
 # init app
 app = FastAPI()
 
 # Mount the static files directory at "/static"
-app.mount("/static", StaticFiles(directory="static"), name="static")
+script_dir = os.path.dirname(__file__)
+st_abs_file_path = os.path.join(script_dir, "static/")
+app.mount("/static", StaticFiles(directory=st_abs_file_path), name="static")
 
 
 @app.get("/")
