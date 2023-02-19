@@ -8,6 +8,9 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
     <body onload="onLoad()">
+        <div id="div-theme-btn">
+            <button onclick="toggleDarkMode()" id="theme-btn">Change Mode</button>
+        </div>
         <div id="pageTitle">
             <h1>TODO List</h1>
         </div>
@@ -19,6 +22,11 @@
                 <th id="status">Status</th>
               </tr>          
             </table>
+        </div>
+        <div id="div-add-btn">
+            <button onclick="updateDatabase()" id="add-btn">
+                <img src="\static\imges\add-button.png" alt="Button Image">
+            </button>
         </div>
     </body>
 </html>
