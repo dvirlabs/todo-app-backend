@@ -4,7 +4,8 @@ import psycopg2.extras
 
 # Connect to the PostgreSQL database
 conn = psycopg2.connect(
-    host="192.168.1.207",
+    host="5.29.128.192",
+    port="1010",
     database="TODO-DB",
     user="python",
     password="lab1234"
@@ -30,5 +31,6 @@ def set_data(query):
         # Run the query and fetch the results
         cur.execute(query)
         conn.commit()
+        return "Database was updated"
     except Exception as error:
         print(error)

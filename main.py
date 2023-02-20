@@ -30,7 +30,17 @@ async def get_result():
   return {"results": results}
 
 
+@app.post("/add_row")
+async def insert_row_to_table(row : dict):
+  
+  # Run a query and fetch the results using the `get_data` function
+  query = "INSERT INTO tasks (task , status) VALUES ('"+row['task'] +"','"+row['status']+"')"
+  
+  results = set_data(query)
+   
+  # Return the results as a JSON response
+  return {"results": results}
 
 
 if __name__ == '__main__':
-  uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True, access_log=False)
+  uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True, access_log=False)
