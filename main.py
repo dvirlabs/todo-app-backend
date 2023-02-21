@@ -22,6 +22,7 @@ async def index():
 @app.get("/table")
 async def get_result():
   
+  
   # Run a query and fetch the results using the `get_data` function
   query = "SELECT * FROM tasks"
   results = get_data(query)
@@ -34,12 +35,48 @@ async def get_result():
 async def insert_row_to_table(row : dict):
   
   # Run a query and fetch the results using the `get_data` function
-  query = "INSERT INTO tasks (task , status) VALUES ('"+row['task'] +"','"+row['status']+"')"
+  query = "INSERT INTO tasks (task , status) VALUES ('"+ row['task'] +"','"+ row['status']+"')"
   
   results = set_data(query)
    
   # Return the results as a JSON response
   return {"results": results}
+
+
+
+
+
+# @app.delete("/delete_row")
+# async def delete_row_from_table(row : dict):
+#   query = "DELETE FROM tasks WHERE id = 
+
+
+
+
+
+@app.delete("/clear_table")
+async def truncate_table():
+  
+  # This action will clear all the data from the table
+  query = "TRUNCATE tasks RESTART IDENTITY"
+  # query = "ALTER SEQUENCE tasks_id_seq RESTART WITH 1"
+  results = set_data(query)
+  
+  # Return the results as a JSON response
+  return {"results": results}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 if __name__ == '__main__':
