@@ -58,20 +58,36 @@ td:hover{
     background-color:bisque;color:green;
 }
 
-#div-add-btn{
-    margin-left: 63%;
-    margin-top: 3%;
-}
 
 #add-btn{
     padding: 0.5rem 1rem;
     background-color: transparent;
-    border: transparent;
     border: none;
     cursor: pointer;
     transition: transform 0.2s ease-in-out;
+    margin-left: 70%;
+    position: static;
 }
 
 #add-btn:hover{
     transform: scale(1.1);
+}
+
+
+#clear_table-btn{
+    padding: 0.5rem 1rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    margin-left: -40%;
+    position: static;
+}
+
+#clear_table-btn:hover{
+    transform: scale(1.1);
+}
+
+.btn{
+    margin-top: 30px;
 }
