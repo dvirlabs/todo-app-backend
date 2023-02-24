@@ -46,10 +46,12 @@ async def insert_row_to_table(row : dict):
 
 
 
-# @app.delete("/delete_row")
-# async def delete_row_from_table(row : dict):
-#   query = "DELETE FROM tasks WHERE id = 
-
+@app.delete("/delete_row")
+async def delete_row_from_table(row : int):
+  query = "DELETE FROM tasks WHERE id =  ('"+ str(row)+"')"
+  
+  results = set_data(query)
+  return {"results": results}
 
 
 
