@@ -2,6 +2,7 @@ import uvicorn
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
+# from fastapi.templating import Jinja2Templates
 from db_utils import *
 import os
 
@@ -12,6 +13,8 @@ app = FastAPI()
 script_dir = os.path.dirname(__file__)
 st_abs_file_path = os.path.join(script_dir, "static/")
 app.mount("/static", StaticFiles(directory=st_abs_file_path), name="static")
+
+# templates = Jinja2Templates(directory="templates")
 
 
 @app.get("/")

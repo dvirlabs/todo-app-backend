@@ -1,4 +1,8 @@
 function onLoad() {
+  var isDarkmode = localStorage.getItem("darkmode") === "true"
+  if (isDarkmode){
+    toggleDarkMode()
+  }
   $.ajax({
     type: 'GET',
     url: '/table',
@@ -23,6 +27,9 @@ function onLoad() {
 function toggleDarkMode() {
   var body = document.getElementsByTagName('body')[0];
   body.classList.toggle('dark-mode');
+  var isDarkMode = body.classList.contains('dark-mode');
+  localStorage.setItem('darkmode', String(isDarkMode))
+
 }
 
 
@@ -38,4 +45,5 @@ function clearTable() {
   })
   location.reload();
 }
+
 
