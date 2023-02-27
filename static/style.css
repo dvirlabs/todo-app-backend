@@ -1,11 +1,13 @@
 :root{
     --background-color: rgb(230, 238, 228) ;
     --text-color: #333333;
+    --svg-color-dark: #333333;
 }
 
 body.dark-mode{
     --background-color: #333333;
-    --text-color: #ffffff ;
+    --text-color: #ffffff;
+    --svg-color: #ffffff;
 }
 
 body{
@@ -13,11 +15,18 @@ body{
     color: var(--text-color);
 }
 
+svg{
+    fill: var(--svg-color)
+}
+
+/* Change style by Element Selector used for them change mostly */
+
 #theme-btn{
     border-radius: 50%;
-    width: 50px;
+    width: auto;
     height: 50px;
-    background-color: rgb(214, 34, 34);
+    padding: 10px;
+    background-color: rgb(51, 46, 46);
     color: #ffffff;
     border: 10px;
     cursor: pointer;
@@ -58,20 +67,47 @@ td:hover{
     background-color:bisque;color:green;
 }
 
-#div-add-btn{
-    margin-left: 63%;
-    margin-top: 3%;
-}
 
 #add-btn{
     padding: 0.5rem 1rem;
     background-color: transparent;
-    border: transparent;
     border: none;
     cursor: pointer;
     transition: transform 0.2s ease-in-out;
+    margin-left: 70%;
+    position: static;
 }
 
 #add-btn:hover{
     transform: scale(1.1);
 }
+
+#add-icon{
+    height: 40px;
+    width: 40px;
+}
+
+
+#clear_table-btn{
+    padding: 0.5rem 1rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    margin-left: -40%;
+    position: static;
+}
+
+#clear_table-btn:hover{
+    transform: scale(1.1);
+}
+
+#clear-icon{
+    height: 40px;
+    width: 40px;
+}
+
+.btn{
+    margin-top: 30px;
+}
+

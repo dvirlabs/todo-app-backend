@@ -29,3 +29,13 @@ function toggleDarkMode() {
 function updateDatabase() {
   
 }
+
+
+function clearTable() {
+  $.ajax({
+    type: 'delete',
+    url: '/clear_table'
+  })
+  location.reload();
+}
+
