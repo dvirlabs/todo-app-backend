@@ -25,6 +25,7 @@ async def index():
 
 # ======================================
 
+
 # ================ Get the data of the table ================
   
 @app.get("/table")
@@ -38,6 +39,7 @@ async def get_result():
   # Return the results as a JSON response
   return {"results": results}
 # ======================================
+
 
 # ================ Add new row to table ================
 
@@ -53,6 +55,7 @@ async def insert_row_to_table(row : dict):
   return {"results": results}
 # ======================================
 
+
 # ================ Delete row from the table ================
 
 @app.delete("/delete_row")
@@ -62,6 +65,7 @@ async def delete_row_from_table(row : int):
   results = set_data(query)
   return {"results": results}
 # ======================================
+
 
 # ================ Clear the data of the table ================
 
@@ -76,6 +80,7 @@ async def truncate_table():
   # Return the results as a JSON response
   return {"results": results}
 # ======================================
+
 
 # ================ Create new table ================
 
