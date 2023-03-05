@@ -17,22 +17,29 @@ app.mount("/static", StaticFiles(directory=st_abs_file_path), name="static")
 # templates = Jinja2Templates(directory="templates")
 
 
+# ================ Main ================
+
 @app.get("/")
 async def index():
     return FileResponse("index.html")
-  
+
+# ======================================
+
+# ================ Get the data of the table ================
   
 @app.get("/table")
 async def get_result():
-  
-  
+
   # Run a query and fetch the results using the `get_data` function
   query = "SELECT * FROM tasks"
+  
   results = get_data(query)
    
   # Return the results as a JSON response
   return {"results": results}
+# ======================================
 
+# ================ Add new row to table ================
 
 @app.post("/add_row")
 async def insert_row_to_table(row : dict):
@@ -42,12 +49,11 @@ async def insert_row_to_table(row : dict):
   
   results = set_data(query)
    
-  # Return the results as a JSON response
+  # Return the results as a JSON response 
   return {"results": results}
+# ======================================
 
-
-
-
+# ================ Delete row from the table ================
 
 @app.delete("/delete_row")
 async def delete_row_from_table(row : int):
@@ -55,9 +61,9 @@ async def delete_row_from_table(row : int):
   
   results = set_data(query)
   return {"results": results}
+# ======================================
 
-
-
+# ================ Clear the data of the table ================
 
 @app.delete("/clear_table")
 async def truncate_table():
@@ -69,10 +75,20 @@ async def truncate_table():
   
   # Return the results as a JSON response
   return {"results": results}
+# ======================================
 
+# ================ Create new table ================
 
+@app.post("/add_table{table_name}")
+async def createNewTable(table_name: str):
+  
+  query = "CREATE TABLE "+ (table_name) + "( id SERIAL PRIMARY KEY, task VARCHAR NOT NULL , status VARCHAR NOT NULL );"
+  
+  results = set_data(query)
+  
+  return {"results": results}
 
-
+# ======================================
 
 
 

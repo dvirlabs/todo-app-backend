@@ -33,8 +33,10 @@ function toggleDarkMode() {
 }
 
 
-function updateDatabase() {
-  
+function addInput() {
+  var input = document.createElement("input");
+  input.setAttribute("type", "json");
+  document.getElementById("input-container").appendChild(input);
 }
 
 

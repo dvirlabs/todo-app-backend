@@ -68,7 +68,7 @@ td:hover{
 }
 
 
-#add-btn{
+#add-input{
     padding: 0.5rem 1rem;
     background-color: transparent;
     border: none;
@@ -78,7 +78,7 @@ td:hover{
     position: static;
 }
 
-#add-btn:hover{
+#add-input:hover{
     transform: scale(1.1);
 }
 
