@@ -96,8 +96,16 @@ async def createNewTable(table_name: str):
 # ======================================
 
 
+# ================ Add new column ================
 
-
+@app.post("/add_column{column_name}")
+async def addNewcolumn(table_name: str , column_name: str , NullOrNot: str):
+  
+  query = "ALTER TABLE "+ (table_name) +" ADD COLUMN "+ (column_name) +" VARCHAR "+ (NullOrNot) +";"
+  
+  results = set_data(query)
+  
+  return {"results": results}
 
 
 
