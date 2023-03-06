@@ -1,9 +1,6 @@
 var theam = "light";
+
 function onLoad() {
-    var isDarkmode = localStorage.getItem("darkmode") === "true"
-    if (isDarkmode){
-      toggleDarkMode()
-    }
     $.ajax({
       type: 'GET',
       url: '/table',
@@ -13,9 +10,9 @@ function onLoad() {
         $.each(data.results, function(index, row) {
           table.append(
             $('<tr>').append(
-                $('<td class="task_id">').text("#"+row.id.toString()),
-                $('<td class="task_data">').text(row.task),
-                $('<td class="task_status">').text(row.status)
+              $('<td class="task_id">').text("#"+row.id.toString()),
+              $('<td class="task_data">').text(row.task),
+              $('<td class="task_status">').text(row.status)
             )
           );
         });
@@ -23,13 +20,16 @@ function onLoad() {
     });
   }
   
+
   
-  
+ 
+
   
   function toggleDarkMode() {
     const body = document.body;
     const theam_but_text = document.getElementById("theam_but_text");
     const theam_but_image = document.getElementById("theme-btn-img");
+    console.log(theam_but_image);
     if(theam == "light"){
       body.classList.toggle("dark_mode");
       theam_but_text.innerHTML = "Dark";
@@ -45,23 +45,4 @@ function onLoad() {
   }
   
   
-  function addInput() {
-    var input = document.createElement("input");
-    input.setAttribute("type", "json");
-    document.getElementById("input-container").appendChild(input);
-  }
-
-  function updateDatabase() {
-    
-  }
-  
-  
-  function clearTable() {
-    $.ajax({
-      type: 'delete',
-      url: '/clear_table'
-    })
-    location.reload();
-  }
-  
-  
+ 
