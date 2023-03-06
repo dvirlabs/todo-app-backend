@@ -30,6 +30,8 @@ function onLoad() {
     const body = document.body;
     const theam_but_text = document.getElementById("theam_but_text");
     const theam_but_image = document.getElementById("theme-btn-img");
+    console.log(theam_but_image);
+    
     if(theam == "light"){
       body.classList.toggle("dark_mode");
       theam_but_text.innerHTML = "Dark";
