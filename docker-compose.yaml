@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+  app :
+    build: ./app/
+    container_name: todo-app
+  db:
+    image: postgres
+    container_name: postgres-db
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword

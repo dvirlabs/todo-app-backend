@@ -1,14 +1,19 @@
 import psycopg2
 import psycopg2.extras
+import os
 
+os.chdir('..')
+
+username = os.environ['POSTGRES_USER']
+password = os.environ['POSTGRES_PASSWORD']
 
 # Connect to the PostgreSQL database
 conn = psycopg2.connect(
-    host="5.29.128.192",
-    port="1010",
+    host="localhost",
+    port="5432",
     database="TODO-DB",
-    user="python",
-    password="lab1234"
+    user=username,
+    password=password
 )
 
 # get the data from the DB in json format
