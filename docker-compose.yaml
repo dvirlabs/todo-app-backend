@@ -3,9 +3,12 @@ services:
   app :
     build: ./app/
     container_name: todo-app
+    network_mode: host
   db:
     image: postgres
     container_name: postgres-db
-    environment:
-      POSTGRES_USER: myuser
-      POSTGRES_PASSWORD: mypassword
+    network_mode: host
+    ports:
+      - 5432:5432
+    env_file:
+      - /app/.env
