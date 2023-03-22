@@ -1,11 +1,12 @@
 import psycopg2
 import psycopg2.extras
 import os
+from dotenv import load_dotenv
 
-os.chdir('..')
+load_dotenv()
 
-username = os.environ['POSTGRES_USER']
-password = os.environ['POSTGRES_PASSWORD']
+username = os.environ.get('POSTGRES_USER')
+password = os.environ.get('POSTGRES_PASSWORD')
 
 # Connect to the PostgreSQL database
 conn = psycopg2.connect(
