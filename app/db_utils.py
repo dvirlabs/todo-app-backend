@@ -11,6 +11,8 @@ postgres_host = os.environ.get('POSTGRES_HOST')
 postgres_port = os.environ.get('POSTGRES_PORT')
 database_name = os.environ.get('DATABASE_NAME')
 
+print (username)
+
 # Connect to the PostgreSQL database
 conn = psycopg2.connect(
     host=postgres_host,

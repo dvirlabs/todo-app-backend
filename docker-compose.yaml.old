@@ -5,7 +5,7 @@ services:
     container_name: todo-app
     network_mode: host
   db:
-    build: ./database/
+    image: todo-db
     container_name: postgres-db
     network_mode: host
     restart: always
@@ -23,3 +23,5 @@ services:
       - 8080:8080    
 
 
+
+# todo-db
