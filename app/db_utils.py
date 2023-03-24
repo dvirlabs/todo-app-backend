@@ -9,7 +9,7 @@ username = os.environ.get('POSTGRES_USER')
 password = os.environ.get('POSTGRES_PASSWORD')
 postgres_host = os.environ.get('POSTGRES_HOST')
 postgres_port = os.environ.get('POSTGRES_PORT')
-database_name = os.environ.get('DATABASE_NAME')
+database_name = os.environ.get('POSTGRES_DB')
 
 print (username)
 

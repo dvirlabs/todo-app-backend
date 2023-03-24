@@ -1,6 +1,6 @@
 CREATE DATABASE todo_db;
 
-CREATE USER todo_db_user;
+CREATE USER todo_user;
 
 CREATE TABLE tasks(
    id SERIAL PRIMARY KEY,
