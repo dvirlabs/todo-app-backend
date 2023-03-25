@@ -5,5 +5,5 @@ CREATE USER todo_user;
 CREATE TABLE tasks(
    id SERIAL PRIMARY KEY,
    task VARCHAR NOT NULL,
-   ststus VARCHAR NOT NOT
+   ststus VARCHAR NOT NULL
 );

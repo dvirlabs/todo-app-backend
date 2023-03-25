@@ -3,7 +3,8 @@ import psycopg2.extras
 import os
 from dotenv import load_dotenv
 
-load_dotenv()
+dotenv_path = os.path.join(os.path.dirname(__file__), '..', '.env')
+load_dotenv(dotenv_path)
 
 username = os.environ.get('POSTGRES_USER')
 password = os.environ.get('POSTGRES_PASSWORD')
@@ -11,7 +12,6 @@ postgres_host = os.environ.get('POSTGRES_HOST')
 postgres_port = os.environ.get('POSTGRES_PORT')
 database_name = os.environ.get('POSTGRES_DB')
 
-print (username)
 
 # Connect to the PostgreSQL database
 conn = psycopg2.connect(
