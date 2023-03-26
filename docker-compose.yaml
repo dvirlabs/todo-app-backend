@@ -13,10 +13,10 @@ services:
     restart: always
     volumes:
       - /database/data:/var/lib/postgresql/data
-    # ports:
-    #   - 5432:5432
-    env_file:
-      - ../TODO-App/.env
+    ports:
+      - 5432:5432
+    # env_file:
+    #   - ../TODO-App/.env
 
   adminer:
     image: adminer
