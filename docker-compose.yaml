@@ -3,11 +3,15 @@ services:
   app :
     build: ./app/
     container_name: todo-app
-    network_mode: host
+      #network_mode: host
+    ports: 
+      - 8002:8000
+    links:
+      - db  
   db:
     build: ./database/
     container_name: todo-db
-    network_mode: host
+      #network_mode: host
     environment:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     restart: always
@@ -22,7 +26,4 @@ services:
     image: adminer
     restart: always
     ports:
-      - 8080:8080    
-
-
-
+      - 8081:8080

@@ -12,14 +12,15 @@ postgres_host = os.environ.get('POSTGRES_HOST')
 postgres_port = os.environ.get('POSTGRES_PORT')
 database_name = os.environ.get('POSTGRES_DB')
 
+print (postgres_host)
 
 # Connect to the PostgreSQL database
 conn = psycopg2.connect(
-    host=postgres_host,
-    port=postgres_port,
-    database=database_name,
-    user=username,
-    password=password
+    host="192.168.1.16",
+    port="5432",
+    database="todo_db",
+    user="todo_user",
+    password="Aa123456"    
 )
 
 # get the data from the DB in json format
