@@ -16,10 +16,10 @@ print (postgres_host)
 
 # Connect to the PostgreSQL database
 conn = psycopg2.connect(
-    host="192.168.1.16",
+    host="db",
     port="5432",
-    database="todo_db",
-    user="todo_user",
+    database="postgres",
+    user="postgres",
     password="Aa123456"    
 )
 
