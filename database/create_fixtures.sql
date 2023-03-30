@@ -1,6 +1,8 @@
-CREATE DATABASE todo_db;
+CREATE USER todo_user WITH PASSWORD :'POSTGRES_PASSWORD';
 
-CREATE USER todo_user;
+CREATE DATABASE todo_db WITH OWNER todo_user;
+
+\c todo_db todo_user;
 
 CREATE TABLE tasks(
    id SERIAL PRIMARY KEY,

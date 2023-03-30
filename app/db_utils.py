@@ -6,21 +6,21 @@ from dotenv import load_dotenv
 dotenv_path = os.path.join(os.path.dirname(__file__), '..', '.env')
 load_dotenv(dotenv_path)
 
-username = os.environ.get('POSTGRES_USER')
-password = os.environ.get('POSTGRES_PASSWORD')
-postgres_host = os.environ.get('POSTGRES_HOST')
+db_username = os.environ.get('POSTGRES_USER')
+db_password = os.environ.get('POSTGRES_PASSWORD')
+# postgres_host = os.environ.get('POSTGRES_HOST')
 postgres_port = os.environ.get('POSTGRES_PORT')
 database_name = os.environ.get('POSTGRES_DB')
 
-print (postgres_host)
+print (db_password)
 
 # Connect to the PostgreSQL database
 conn = psycopg2.connect(
     host="db",
     port="5432",
-    database="postgres",
-    user="postgres",
-    password="Aa123456"    
+    database=database_name,
+    user=db_username,
+    password=db_password    
 )
 
 # get the data from the DB in json format

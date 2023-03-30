@@ -3,12 +3,11 @@ services:
   db:
     build: ./database/
     container_name: todo-db
-      #network_mode: host
     environment:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     restart: always
     volumes:
-      - /database/data:/var/lib/postgresql/data
+      - ./database/data:/var/lib/postgresql/data
     ports:
       - 5432:5432
     # env_file:
@@ -17,7 +16,6 @@ services:
   app :
     build: ./app/
     container_name: todo-app
-      #network_mode: host
     ports: 
       - 8002:8000
     links:
@@ -25,8 +23,12 @@ services:
     depends_on:
       - db  
 
-  adminer:
-    image: adminer
+  pgadmin:
+    container_name: pgadmin4_container
+    image: dpage/pgadmin4
     restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
     ports:
-      - 8081:8080
+      - "5050:80"
