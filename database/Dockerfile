@@ -2,7 +2,7 @@ FROM postgres:latest
 
 WORKDIR /app
 
-COPY create_fixtures.sql /docker-entrypoint-initdb.d/create_fixtures.sql
+COPY init.sql /docker-entrypoint-initdb.d/init.sql
 
 EXPOSE 5432
 

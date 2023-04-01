@@ -1,0 +1,3 @@
+# Ignore auto created folder
+app/__pycache__/
+database/data

@@ -8,16 +8,16 @@ load_dotenv(dotenv_path)
 
 db_username = os.environ.get('POSTGRES_USER')
 db_password = os.environ.get('POSTGRES_PASSWORD')
-# postgres_host = os.environ.get('POSTGRES_HOST')
 postgres_port = os.environ.get('POSTGRES_PORT')
 database_name = os.environ.get('POSTGRES_DB')
+# postgres_host = os.environ.get('POSTGRES_HOST')
 
-print (db_password)
+print (database_name)
 
 # Connect to the PostgreSQL database
 conn = psycopg2.connect(
     host="db",
-    port="5432",
+    port=postgres_port,
     database=database_name,
     user=db_username,
     password=db_password    

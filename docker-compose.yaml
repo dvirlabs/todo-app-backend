@@ -4,18 +4,25 @@ services:
     build: ./database/
     container_name: todo-db
     environment:
+      POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     restart: always
-    volumes:
-      - ./database/data:/var/lib/postgresql/data
     ports:
       - 5432:5432
+    volumes:
+      - ./database/data:/var/lib/postgresql/data
+      # - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
     # env_file:
     #   - ../TODO-App/.env
     
   app :
     build: ./app/
     container_name: todo-app
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     ports: 
       - 8002:8000
     links:
