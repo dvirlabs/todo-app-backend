@@ -1,4 +1,4 @@
-FROM postgres:latest
+FROM todo-db:v1.0
 
 WORKDIR /app
 

@@ -10,7 +10,7 @@ db_username = os.environ.get('POSTGRES_USER')
 db_password = os.environ.get('POSTGRES_PASSWORD')
 postgres_port = os.environ.get('POSTGRES_PORT')
 database_name = os.environ.get('POSTGRES_DB')
-# postgres_host = os.environ.get('POSTGRES_HOST')
+
 
 print (database_name)
 
