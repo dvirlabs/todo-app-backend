@@ -1,9 +1,11 @@
-FROM todo-db:v1.0
+FROM postgres:latest
 
 WORKDIR /app
 
 COPY init.sql /docker-entrypoint-initdb.d/init.sql
 
+# RUN [[ -e "pg_dump.sql" ]] && cp pg_dump.sql /docker-entrypoint-initdb.d/
+
 EXPOSE 5432
 
-CMD [ "postgres" ]
+CMD [ "todo_user" ]

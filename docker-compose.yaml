@@ -26,7 +26,8 @@ services:
     links:
       - db
     depends_on:
-      - db  
+      - db
+    restart: always
 
   pgadmin:
     container_name: pgadmin4_container
