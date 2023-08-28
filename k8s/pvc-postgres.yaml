@@ -8,4 +8,6 @@ spec:
   resources:
     requests:
       storage: 5Gi
-  storageClassName: manual
+  storageClassName: local-storage
+  local:
+    path: /opt/todo-app/data
