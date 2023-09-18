@@ -19,4 +19,4 @@ spec:
               values:
                 - k3s
   persistentVolumeReclaimPolicy: Retain
-  storageClassName: manual
+  storageClassName: local-storage

@@ -10,4 +10,4 @@ spec:
       storage: 5Gi
   storageClassName: local-storage
   local:
-    path: /opt/todo-app/data
+    path: /TODO-App/k8s/data
