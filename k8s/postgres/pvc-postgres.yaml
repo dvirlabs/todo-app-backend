@@ -8,11 +8,4 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-<<<<<<< HEAD:k8s/pvc-postgres.yaml
-      storage: 5Gi
-  storageClassName: local-storage
-  local:
-    path: /TODO-App/k8s/data
-=======
       storage: 1Gi
->>>>>>> 0535baf043608b682c068a2261e7502383bd39ce:k8s/postgres/pvc-postgres.yaml
