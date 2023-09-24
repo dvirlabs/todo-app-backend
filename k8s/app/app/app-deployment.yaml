@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+      - name: todo-app
+        image: dvirlabs/todo-app:con-db
+        volumeMounts:
+        - name: config-volume
+          mountPath: /app/.env
+      volumes:
+      - name: config-volume
+        configMap:
+          name: postgres-config
+      restartPolicy: Always
