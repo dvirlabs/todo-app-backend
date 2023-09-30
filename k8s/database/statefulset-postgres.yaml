@@ -16,12 +16,9 @@ spec:
       containers:
         - name: postgres
           image: postgres:14.9
-          env:
-            - name: POSTGRES_PASSWORD
-              valueFrom:
-                configMapKeyRef:
-                  name: postgres-config
-                  key: POSTGRES_PASSWORD
+          envForm:
+            - configMapRef:
+              name: postgres-config
           ports:
             - containerPort: 5432
           volumeMounts:
