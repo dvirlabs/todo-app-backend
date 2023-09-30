@@ -8,5 +8,5 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: /root/pv-test/todo-app-pv
+    path: /opt/k3s-local-pv
   storageClassName: default
