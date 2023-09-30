@@ -9,4 +9,4 @@ spec:
     - ReadWriteOnce
   hostPath:
     path: /opt/k3s-local-pv
-  storageClassName: default
+  storageClassName: todo-app
