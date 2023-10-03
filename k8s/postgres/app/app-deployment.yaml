@@ -13,15 +13,15 @@ spec:
         app: my-app
     spec:
       containers:
-      - name: my-app
+      - name: todo-app
         image: dvirlabs/todo-app:v1.0
         env:
         - name: POSTGRES_HOST
-          value: postgres-headless-service
+          value: postgres-headless
         - name: POSTGRES_PORT
           value: 5432
         - name: POSTGRES_USER
           value: postgres
         - name: POSTGRES_PASSWORD
-          value: password
+          value: Aa123456
       restartPolicy: Always
