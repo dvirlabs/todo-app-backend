@@ -1,0 +1,37 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: init-db-job
+spec:
+  template:
+    spec:
+      containers:
+        - name: init-db-con
+          image: postgres:latest
+          command: ["bash", "-c"]
+          args:
+            - |
+              createdb -U $POSTGRES_USER $POSTGRES_DB
+              psql -U $POSTGRES_USER -d $POSTGRES_DB -c "CREATE TABLE $POSTGRES_TABLE (id SERIAL PRIMARY KEY, task VARCHAR(255), status VARCHAR(255));"
+              psql -U $POSTGRES_USER -d $POSTGRES_DB -c "CREATE USER $POSTGRES_USER WITH ENCRYPTED PASSWORD '$POSTGRES_PASSWORD';"
+              psql -U $POSTGRES_USER -d $POSTGRES_DB -c "GRANT ALL PRIVILEGES ON DATABASE $POSTGRES_DB TO $POSTGRES_USER;"
+          env:
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-config
+                  key: POSTGRES_DB
+            - name: POSTGRES_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-config
+                  key: POSTGRES_USER
+            - name: POSTGRES_PASSWORD
+              value: POSTGRES_PASSWORD
+            - name: POSTGRES_TABLE
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-config
+                  key: POSTGRES_TABLE
+      restartPolicy: Never
+  backoffLimit: 1
