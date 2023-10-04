@@ -13,18 +13,58 @@ spec:
       labels:
         app: postgres
     spec:
+      initContiners:
+        - name: init-database
+          image: postgres:14.9
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-config
+                  key: POSTGRES_USER
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-config
+                  key: POSTGRES_PASSWORD
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-config
+                  key: POSTGRES_DB
+          command: ["psql", "-U", "$(POSTGRES_USER)", "--file=/config/init-db.sql"]
+          volumeMounts:
+            - name: config-volume
       containers:
         - name: postgres
           image: postgres:14.9
-          envForm:
-            - configMapRef:
-              name: postgres-config
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-config
+                  key: POSTGRES_USER
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-config
+                  key: POSTGRES_PASSWORD
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-config
+                  key: POSTGRES_DB
           ports:
             - containerPort: 5432
           volumeMounts:
             - name: postgres-data
               mountPath: /var/lib/postgresql/data
+            - name: config-volume
+              mountPath: /config
       volumes:
         - name: postgres-data
           persistentVolumeClaim:
             claimName: todo-app-pvc
+        - name: config-volume
+          configMap:
+            name: postgres-config

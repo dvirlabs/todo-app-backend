@@ -3,16 +3,12 @@ kind: ConfigMap
 metadata:
   name: postgres-config
 data:
-  postgres-config: |
-    # Envairoment Variables for Postgres
-    # =====================================
-    POSTGRES_USER="todo_user"
-    POSTGRES_PASSWORD="Aa123456"
-    POSTGRES_DB="todo_db"
-    POSTGRES_PORT="5432"
-    POSTGRES_HOST="postgres-service"
-
-    # Envairoment Variables for PgAdmin
-    # ===================================
-    PGADMIN_EMAIL="admin@admin.com"
-    PGADMIN_PASSWORD="Aa123456"
+  POSTGRES_USER: "todo_user"
+  POSTGRES_PASSWORD: "Aa123456"
+  POSTGRES_DB: "todo_db"
+  POSTGRES_PORT: "5432"
+  POSTGRES_HOST: "postgres-service"
+  PGADMIN_EMAIL: "admin@admin.com"
+  PGADMIN_PASSWORD: "Aa123456"
+  create-db.sql: |
+    CREATE DATABASE todo-db;
