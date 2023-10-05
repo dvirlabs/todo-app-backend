@@ -1,37 +1,46 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: init-db-job
+  name: init-database-job
 spec:
   template:
     spec:
       containers:
-        - name: init-db-con
-          image: postgres:latest
-          command: ["bash", "-c"]
-          args:
-            - |
-              createdb -h $POSTGRES_HOST -U $POSTGRES_USER $POSTGRES_DB
-              psql -h $POSTGRES_HOST -U $POSTGRES_USER -d $POSTGRES_DB -c "CREATE TABLE $POSTGRES_TABLE (id SERIAL PRIMARY KEY, task VARCHAR(255), status VARCHAR(255));"
-              psql -h $POSTGRES_HOST -U $POSTGRES_USER -d $POSTGRES_DB -c "CREATE USER $POSTGRES_USER WITH ENCRYPTED PASSWORD '$POSTGRES_PASSWORD';"
-              psql -h $POSTGRES_HOST -U $POSTGRES_USER -d $POSTGRES_DB -c "GRANT ALL PRIVILEGES ON DATABASE $POSTGRES_DB TO $POSTGRES_USER;"
-          env:
-            - name: POSTGRES_DB
-              valueFrom:
-                configMapKeyRef:
-                  name: postgres-config
-                  key: POSTGRES_DB
-            - name: POSTGRES_USER
-              valueFrom:
-                configMapKeyRef:
-                  name: postgres-config
-                  key: POSTGRES_USER
-            - name: POSTGRES_PASSWORD
-              value: POSTGRES_PASSWORD
-            - name: POSTGRES_TABLE
-              valueFrom:
-                configMapKeyRef:
-                  name: postgres-config
-                  key: POSTGRES_TABLE
+      - name: init-database
+        image: postgres:latest
+        command:
+        - /bin/sh
+        - -c
+        - |
+          until psql -h postgres-service -U $POSTGRES_USER -d $POSTGRES_DB -c "SELECT 1"; do
+            echo "Waiting for PostgreSQL to be ready..."
+            sleep 2
+          done
+          psql -h postgres-service -U $POSTGRES_USER -d $POSTGRES_DB -c "CREATE DATABASE $POSTGRES_DB;"
+          psql -h postgres-service -U $POSTGRES_USER -d $POSTGRES_DB -c "CREATE TABLE $POSTGRES_TABLE (id SERIAL PRIMARY KEY, tasks VARCHAR(255), status VARCHAR(255));"
+          psql -h postgres-service -U $POSTGRES_USER -d $POSTGRES_DB -c "CREATE USER $POSTGRES_USER WITH ENCRYPTED PASSWORD '$POSTGRES_PASSWORD';"
+          psql -h postgres-service -U $POSTGRES_USER -d $POSTGRES_DB -c "GRANT ALL PRIVILEGES ON DATABASE $POSTGRES_DB TO $POSTGRES_USER;"
+        env:
+        - name: POSTGRES_DB
+          valueFrom:
+            configMapKeyRef:
+              name: postgres-config
+              key: POSTGRES_USER
+        - name: POSTGRES_USER
+          valueFrom:
+            configMapKeyRef:
+              name: postgres-config
+              key: POSTGRES_DEFAULT_USER
+        - name: POSTGRES_PASSWORD
+          value: POSTGRES_PASSWORD
+        - name: POSTGRES_DB
+          valueFrom:
+            configMapKeyRef:
+              name: postgres-config
+              key: POSTGRES_DB
+        - name: POSTGRES_TABLE
+          valueFrom:
+            configMapKeyRef:
+              name: postgres-config
+              key: POSTGRES_TABLE
       restartPolicy: Never
-  backoffLimit: 1

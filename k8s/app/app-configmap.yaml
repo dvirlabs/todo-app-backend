@@ -12,5 +12,5 @@ data:
   POSTGRES_HOST: "postgres-service"
   PGADMIN_EMAIL: "admin@admin.com"
   PGADMIN_PASSWORD: "Aa123456"
-  create-db.sql: |
-    CREATE DATABASE todo-db;
+  # create-db.sql: |
+  #   CREATE DATABASE todo-db;
