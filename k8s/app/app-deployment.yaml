@@ -3,6 +3,44 @@ kind: Deployment
 metadata:
   name: todo-app
 spec:
+  initContainers:
+  - name: init-database
+    image: postgres:latest
+    command:
+    - /bin/sh
+    - -c
+    - |
+      until psql -h postgres-service -U $POSTGRES_USER -d $POSTGRES_DB -c "SELECT 1"; do
+        echo "Waiting for PostgreSQL to be ready..."
+        sleep 2
+      done
+      psql -h postgres-service -U $POSTGRES_USER -d $POSTGRES_DB -c "CREATE DATABASE $POSTGRES_DB;"
+      psql -h postgres-service -U $POSTGRES_USER -d $POSTGRES_DB -c "CREATE TABLE $POSTGRES_TABLE (id SERIAL PRIMARY KEY, tasks VARCHAR(255), status VARCHAR(255));"
+      psql -h postgres-service -U $POSTGRES_USER -d $POSTGRES_DB -c "CREATE USER $POSTGRES_USER WITH ENCRYPTED PASSWORD '$POSTGRES_PASSWORD';"
+      psql -h postgres-service -U $POSTGRES_USER -d $POSTGRES_DB -c "GRANT ALL PRIVILEGES ON DATABASE $POSTGRES_DB TO $POSTGRES_USER;"
+    env:
+    - name: POSTGRES_DB
+      valueFrom:
+        configMapKeyRef:
+          name: postgres-config
+          key: POSTGRES_USER
+    - name: POSTGRES_USER
+      valueFrom:
+        configMapKeyRef:
+          name: postgres-config
+          key: POSTGRES_DEFAULT_USER
+    - name: POSTGRES_PASSWORD
+      value: POSTGRES_PASSWORD
+    - name: POSTGRES_DB
+      valueFrom:
+        configMapKeyRef:
+          name: postgres-config
+          key: POSTGRES_DB
+    - name: POSTGRES_TABLE
+      valueFrom:
+        configMapKeyRef:
+          name: postgres-config
+          key: POSTGRES_TABLE
   replicas: 1
   selector:
     matchLabels:

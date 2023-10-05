@@ -3,6 +3,7 @@ kind: ConfigMap
 metadata:
   name: postgres-config
 data:
+  POSTGRES_DEFAULT_USER: "postgres"
   POSTGRES_USER: "todo_user"
   POSTGRES_PASSWORD: "Aa123456"
   POSTGRES_DB: "todo_db"
