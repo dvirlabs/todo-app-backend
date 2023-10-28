@@ -32,6 +32,11 @@ spec:
                 configMapKeyRef:
                   name: postgres-config
                   key: POSTGRES_DB
+            - name: POSTGRES_TABLE
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-config
+                  key: POSTGRES_TABLE
           ports:
             - containerPort: 5432
           volumeMounts:

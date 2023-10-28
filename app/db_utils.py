@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 dotenv_path = os.path.join(os.path.dirname(__file__), '..', '.env')
 load_dotenv(dotenv_path)
 
-db_username = os.environ.get('POSTGRES_USER')
+db_username = os.environ.get('APP_USER')
 db_password = os.environ.get('POSTGRES_PASSWORD')
 db_host = os.environ.get('POSTGRES_HOST')
 postgres_port = os.environ.get('POSTGRES_PORT')
