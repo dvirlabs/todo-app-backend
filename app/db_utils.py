@@ -3,7 +3,7 @@ import psycopg2.extras
 import os
 from dotenv import load_dotenv
 
-dotenv_path = os.path.join(os.path.dirname(__file__), '..', '.env')
+dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
 load_dotenv(dotenv_path)
 
 db_username = os.environ.get('POSTGRES_USER')
