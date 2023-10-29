@@ -20,11 +20,11 @@ spec:
           mountPath: /app/.env
         resources: 
           limits:
-            cpu: "250m"  # Set CPU limit to 0.5 CPU cores
-            memory: "128Mi"  # Set memory limit to 256 megabytes
+            cpu: "500m"  # Set CPU limit to 0.5 CPU cores
+            memory: "256Mi"  # Set memory limit to 256 megabytes
           requests:
-            cpu: "500m"  # Set CPU request to 0.1 CPU cores
-            memory: "256Mi"  # Set memory request to 128 megabytes
+            cpu: "250m"  # Set CPU request to 0.1 CPU cores
+            memory: "128Mi"  # Set memory request to 128 megabytes
       volumes:
       - name: config-volume
         configMap:
