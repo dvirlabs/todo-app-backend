@@ -9,4 +9,4 @@ spec:
       - name: init-database
         image: postgres:latest
         command: ["psql", "-d", "todo_db", "-c", "CREATE TABLE tasks (id SERIAL PRIMARY KEY, tasks VARCHAR(255), status VARCHAR(255));"]
-  restartPolicy: never
+    restartPolicy: never
