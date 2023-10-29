@@ -8,36 +8,5 @@ spec:
       containers:
       - name: init-database
         image: postgres:latest
-        command:
-        - /bin/sh
-        - -c
-        - |
-          until psql -h postgres-service -U $POSTGRES_USER -d $POSTGRES_DB -c "SELECT 1"; do
-            echo "Waiting for PostgreSQL to be ready..."
-            sleep 2
-          done
-          psql -h postgres-service -U $POSTGRES_USER -d $POSTGRES_DB -c "CREATE TABLE IF NOT EXISTS $POSTGRES_TABLE (id SERIAL PRIMARY KEY, tasks VARCHAR(255), status VARCHAR(255));"
-        env:
-        - name: POSTGRES_DB
-          valueFrom:
-            configMapKeyRef:
-              name: postgres-config
-              key: POSTGRES_USER
-        - name: POSTGRES_USER
-          valueFrom:
-            configMapKeyRef:
-              name: postgres-config
-              key: POSTGRES_DEFAULT_USER
-        - name: POSTGRES_PASSWORD
-          value: POSTGRES_PASSWORD
-        - name: POSTGRES_DB
-          valueFrom:
-            configMapKeyRef:  
-              name: postgres-config
-              key: POSTGRES_DB
-        - name: POSTGRES_TABLE
-          valueFrom:
-            configMapKeyRef:
-              name: postgres-config
-              key: POSTGRES_TABLE
-      restartPolicy: Never
+        command: ["psql", "-d", "todo_db", "-c", "CREATE TABLE tasks (id SERIAL PRIMARY KEY, tasks VARCHAR(255), status VARCHAR(255));"]
+        restartPolicy: never
