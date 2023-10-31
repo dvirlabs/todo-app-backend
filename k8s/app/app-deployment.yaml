@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: todo-app
-        image: dvirlabs/todo-app:con-db
+        image: dvirlabs/todo-app:v2.4
         volumeMounts:
         - name: config-volume
           mountPath: /app/.env
